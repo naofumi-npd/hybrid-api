@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
+    'menu',
+    'common'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -74,17 +77,26 @@ WSGI_APPLICATION = 'hybrid.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'hybrid',
+#         'USER': 'hybrid',
+#         'PASSWORD': 'hybrid',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'hybrid',
-        'USER': 'hybrid',
-        'PASSWORD': 'hybrid',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

@@ -16,3 +16,4 @@ node_modules/
 .sass-cache/
 *.pyc
 *.css.map
+django/
