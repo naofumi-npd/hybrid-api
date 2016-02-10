@@ -1,1 +1,46 @@
-hello
+<style>
+    .order-item{
+    	border:1px solid black;
+    	padding:4px;
+    	margin:5px 0;
+    }
+</style>
+
+<div id="order-container">
+
+</div>
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    var socket = io.connect('http://localhost:4200');
+    socket.emit('join', 'Hello World from client');
+
+    socket.on('messages', function(data) {
+                addOrder(1);
+        });
+</script>
+<script>
+	function addOrder(order){
+		var order = {id:1, table:1, order:[{name:"pizza", quantity:2}]};
+		var  item= '<div class="order-item">';
+		item += '<p>Order #: ' + order.id + '</p>';
+		item += '<p>Table #: ' + order.table + '</p>';
+		$.each(order.order, function(index, value){
+			item += '<div>';
+			item += '<p>';
+			item += value.name + ': ' + value.quantity; 
+			item += '</p>';
+			item += '</div>';
+		});
+		// item += '<button onClick="orderRecieved();">Received</button>'; 
+		// item +=  '&nbsp;'
+		item += '<button class="remove-btn">Remove</button>'; 
+		item += '</div>';
+		$('#order-container').append(item);
+	}
+	
+	$(document).on('click', '.remove-btn', function(){
+		$(this).parent().remove();
+	});
+</script>
