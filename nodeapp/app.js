@@ -5,6 +5,12 @@ var app = express();
 var server = app.listen(4200);
 var io = require('socket.io').listen(server);
 
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json({ type: 'application/json'});
+
+
+app.use(bodyParser.json());
+
 // var routes = require('./routes/index');
 
 io.on('connection', function(client) {  
@@ -23,6 +29,6 @@ app.get('/', function(req, res) {
 	res.end();
 });
 app.post('/order', function(req, res) {
-	io.sockets.emit('messages', 'You got a new order');
+	io.sockets.emit('messages', req.body.order);
 	res.end();
 });

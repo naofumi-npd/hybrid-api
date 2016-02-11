@@ -17,16 +17,16 @@
     socket.emit('join', 'Hello World from client');
 
     socket.on('messages', function(data) {
-                addOrder(1);
+    	addOrder(data);
         });
 </script>
 <script>
-	function addOrder(order){
+	function addOrder(data){
 		var order = {id:1, table:1, order:[{name:"pizza", quantity:2}]};
 		var  item= '<div class="order-item">';
 		item += '<p>Order #: ' + order.id + '</p>';
-		item += '<p>Table #: ' + order.table + '</p>';
-		$.each(order.order, function(index, value){
+		item += '<p>Table #: ' + data.tableNo + '</p>';
+		$.each(data.order, function(index, value){
 			item += '<div>';
 			item += '<p>';
 			item += value.name + ': ' + value.quantity; 
